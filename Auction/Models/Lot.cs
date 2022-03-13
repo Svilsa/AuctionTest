@@ -1,16 +1,8 @@
-﻿namespace Auction.Models
-{
-    public class Lot
-    {
-        public uint Id;
-        public double Price;
-        public double Volume;
+﻿namespace Auction.Models;
 
-        public Lot(uint id, double price, double volume)
-        {
-            Id = id;
-            Price = price;
-            Volume = volume;
-        }
-    }
+public record struct Lot(uint Id, double Price, double Volume)
+{
+    public readonly uint Id = Id;
+    public readonly double Price = Price;
+    public readonly double Volume = Volume;
 }

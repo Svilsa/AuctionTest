@@ -1,21 +1,22 @@
-﻿namespace Auction.Models
+﻿global using Updates = System.Collections.Generic.List<Auction.Models.LotUpdate>;
+
+namespace Auction.Models;
+
+public enum Action
 {
-    public enum Action
-    {
-        Add,
-        Change,
-        Del
-    }
+    Add,
+    Change,
+    Del
+}
 
-    public class LotUpdate
-    {
-        public Action Action;
-        public Lot Lot;
+public struct LotUpdate
+{
+    public readonly Action Action;
+    public Lot Lot;
 
-        public LotUpdate(Action action, Lot lot)
-        {
-            Action = action;
-            Lot = lot;
-        }
+    public LotUpdate(Action action, Lot lot)
+    {
+        Action = action;
+        Lot = lot;
     }
 }
