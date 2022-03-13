@@ -1,4 +1,4 @@
-global using Updates = System.Collections.Generic.List<Auction.Models.LotUpdate>;
+global using Updates = Auction.Infrastructure.ListPool<Auction.Models.LotUpdate>;
 using System.Linq;
 using Auction.Models;
 using Xunit;
