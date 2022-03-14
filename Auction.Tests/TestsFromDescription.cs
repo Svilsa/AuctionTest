@@ -11,6 +11,7 @@ namespace Auction.Tests
         private const string AuctionName = "au1";
         
         [Fact]
+        // ADD -> Change; ADD -> Del
         public void TestFromDescription1()
         {
             var tr = new Throttler();
@@ -39,6 +40,7 @@ namespace Auction.Tests
         }
         
         [Fact]
+        // Del -> ADD
         public void TestFromDescription2()
         {
             var tr = new Throttler();

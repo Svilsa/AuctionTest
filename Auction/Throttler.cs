@@ -63,12 +63,12 @@ public class Throttler : ThrottlerBase
                     case Action.Add:
                         if (newUpdate.Action == Action.Del)
                             break;
-                        
+
                         mergedUpdates.Add(
                             new LotUpdate(Action.Add,
                                 new Lot(oldUpdate.Lot.Id, newUpdate.Lot.Price, newUpdate.Lot.Volume)));
                         break;
-                    
+
                     case Action.Change:
                         if (newUpdate.Action == Action.Del)
                         {
@@ -77,12 +77,12 @@ public class Throttler : ThrottlerBase
                                     new Lot(oldUpdate.Lot.Id, 0, 0)));
                             break;
                         }
-                        
+
                         mergedUpdates.Add(
                             new LotUpdate(Action.Change,
                                 new Lot(oldUpdate.Lot.Id, newUpdate.Lot.Price, newUpdate.Lot.Volume)));
                         break;
-                    
+
                     case Action.Del:
                         if (newUpdate.Action == Action.Del)
                         {
@@ -91,7 +91,7 @@ public class Throttler : ThrottlerBase
                                     new Lot(oldUpdate.Lot.Id, 0, 0)));
                             break;
                         }
-                        
+
                         mergedUpdates.Add(
                             new LotUpdate(Action.Change,
                                 new Lot(oldUpdate.Lot.Id, newUpdate.Lot.Price, newUpdate.Lot.Volume)));
@@ -103,32 +103,22 @@ public class Throttler : ThrottlerBase
 
                 continue;
             }
-            
-            // To guarantee right order in the merged updates
-            if (oldUpdate.Lot.Id < newUpdate.Lot.Id)
-            {
-                mergedUpdates.Add(oldUpdate);
-                mergedUpdates.Add(newUpdate);
-            }
-            else
-            {
-                mergedUpdates.Add(newUpdate);
-                mergedUpdates.Add(oldUpdate);
-            }
-            
+
+            mergedUpdates.Add(oldUpdate);
+            mergedUpdates.Add(newUpdate);
         }
 
-        // 
         if (!isUpdatesCountEqual)
-            
+
             if (isNewUpdatesCountMoreThenOldOnes)
                 for (; i < newUpdates.Count; i++)
                     mergedUpdates.Add(newUpdates[i]);
-            
+
             else
                 for (; i < oldUpdates.Count; i++)
                     mergedUpdates.Add(oldUpdates[i]);
-        
+
+        mergedUpdates.Sort();
         return mergedUpdates;
     }
 }
