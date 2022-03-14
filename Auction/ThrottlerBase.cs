@@ -1,7 +1,10 @@
-﻿namespace Auction;
+﻿using Updates = Auction.Infrastructure.ListPool<Auction.Models.LotUpdate>;
 
-public abstract class ThrottlerBase
+namespace Auction
 {
-    public abstract void PutUpdates(string auctionName, Updates updates);
-    public abstract Updates? PopUpdates(string auctionName);
+    public abstract class ThrottlerBase
+    {
+        public abstract void PutUpdates(string auctionName, Updates updates);
+        public abstract Updates? PopUpdates(string auctionName);
+    }
 }

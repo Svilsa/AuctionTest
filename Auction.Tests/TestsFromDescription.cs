@@ -1,8 +1,8 @@
-global using Updates = Auction.Infrastructure.ListPool<Auction.Models.LotUpdate>;
 using System.Linq;
 using Auction.Models;
 using Xunit;
 using Action = Auction.Models.Action;
+using Updates = Auction.Infrastructure.ListPool<Auction.Models.LotUpdate>;
 
 namespace Auction.Tests
 {
